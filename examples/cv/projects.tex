@@ -1,0 +1,74 @@
+%-------------------------------------------------------------------------------
+%	SECTION TITLE
+%-------------------------------------------------------------------------------
+\cvsection{Projects}
+
+
+%-------------------------------------------------------------------------------
+%	PROJECT ENTRY
+%-------------------------------------------------------------------------------
+% Usage: \cvproject{<title>}{<short-description>}{<date>}{<items>}
+\newcommand*{\cvproject}[4]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    \entrytitlestyle{#1} & \entrydatestyle{#3} \\
+    \ifstrempty{#2}
+      {}
+      {\entrypositionstyle{#2} & \\}
+    \ifstrempty{#4}
+      {}
+      {\multicolumn{2}{L{\textwidth}}{\descriptionstyle{#4}} \\}
+  \end{tabular*}%
+}
+
+
+%-------------------------------------------------------------------------------
+%	CONTENT
+%-------------------------------------------------------------------------------
+\begin{cventries}
+
+%---------------------------------------------------------
+  \cvproject
+    {Fire Service System} % Project title
+    {Web application reconstruction of a Computer Science Department project (cs359)} % Short description
+    {2026} % Date
+    {
+      \begin{cvitems} % Description(s)
+        \item {Deployed on Railway with full-stack implementation}
+        \item {React, Java Spring Boot, PostgreSQL}
+        \item {\cvurl{github.com/aggelos-gk/fire-service-system}}
+        \item {\textbf{Live Demo:} \cvurl{fire-service-system-frontend-production.up.railway.app}}
+      \end{cvitems}
+    }
+
+%---------------------------------------------------------
+
+  \cvproject
+    {Static Websites} % Project title
+    {Static Websites deployed on GitHub} % Short description
+    {2025} % Date
+    {
+      \begin{cvitems} % Description(s)
+        \item {\cvurl{HTML, CSS, JS}}
+        \item {\cvurl{danaigkogkosi.com}}
+        \item {\cvurl{12september26.com}}
+      \end{cvitems}
+    }
+
+%---------------------------------------------------------
+
+  \cvproject
+    {Academic Projects} % Project title
+    {Selected projects developed during my undergraduate studies} % Short description
+    {2022 - 2026} % Date
+    {
+      \begin{cvitems} % Description(s)
+        \item {\cvurl{gitlab.com/csd-projects}}
+      \end{cvitems}
+    }
+%---------------------------------------------------------
+
+\end{cventries}
+
