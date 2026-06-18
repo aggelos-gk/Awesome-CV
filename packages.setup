@@ -1,0 +1,37 @@
+# Awesome-CV local TeX Live setup
+# Use this on a machine where the system TeX/tlmgr packages are missing or too old.
+# This installs TeX Live locally under ~/.local, without sudo.
+
+# 1. Download and extract the TeX Live installer.
+wget -O /tmp/install-tl-unx.tar.gz https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+tar -xzf /tmp/install-tl-unx.tar.gz -C /tmp
+
+# 2. Find the extracted installer directory.
+INSTALL_TL_DIR="$(find /tmp -maxdepth 1 -type d -name 'install-tl-*' | sort | tail -n 1)"
+
+# 3. Install a local TeX Live tree.
+"$INSTALL_TL_DIR/install-tl" \
+  -no-gui \
+  -no-interaction \
+  -scheme scheme-small \
+  -texdir "$HOME/.local/texlive/2026" \
+  -texmflocal "$HOME/.local/texlive/texmf-local" \
+  -texmfsysconfig "$HOME/.local/texlive/2026/texmf-config" \
+  -texmfsysvar "$HOME/.local/texlive/2026/texmf-var" \
+  -no-doc-install \
+  -no-src-install
+
+# 4. Install the extra packages Awesome-CV needs.
+TLBIN="$HOME/.local/texlive/2026/bin/x86_64-linux"
+
+"$TLBIN/tlmgr" install fontawesome6 roboto tcolorbox accsupp
+"$TLBIN/tlmgr" install sourcesans
+"$TLBIN/tlmgr" install xifthen xstring setspace etoolbox parskip bookmark
+"$TLBIN/tlmgr" install ifmtarg
+"$TLBIN/tlmgr" install tikzfill
+
+# 5. Build the CV.
+make CC="$TLBIN/lualatex" cv.pdf
+
+# Or, in this repo, just run:
+./build_cv.sh
